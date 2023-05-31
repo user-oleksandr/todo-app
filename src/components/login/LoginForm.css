@@ -1,0 +1,39 @@
+.login-container {
+    background-color: #cccccc;
+    border-radius: 10px;
+    height: 20em;
+}
+
+.box-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+}
+
+.userlogin {
+    height: 2.5em;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+}
+
+.userpassword {
+    height: 2.5em;
+    width: 15em;
+    margin-left: 5px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+}
+
+.userbutton {
+    margin-left: 5px;
+    padding: 10px 35px;
+    border-radius: 5px;
+    border: none;
+}
+
+.userbutton:hover {
+    background-color: #b4b4b9;
+}

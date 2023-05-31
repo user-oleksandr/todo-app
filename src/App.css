@@ -1,38 +1,132 @@
+body {
+    background-color: #161B22;
+    padding: 0 10px;
+    font-family: "Bodoni MT";
+}
+
 .App {
-  text-align: center;
+    background-color: #cccccc;
+    border-radius: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main {
+    display: flex;
+    margin-top: -25px;
+    min-height: 250px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h2 {
+    font-family: "Agency FB";
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 55px;
+    border-radius: 10px 10px 0 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.box-input {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 40%;
 }
 
-.App-link {
-  color: #61dafb;
+.box-logout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.greeting{
+    font-size: 20px;
+}
+
+.greeting-button button {
+    border-radius: 5px;
+}
+
+.box-input form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.box-input button {
+    border: none;
+    padding: 10px 35px;
+}
+
+.input-form {
+    height: 2.5em;
+    width: 50%;
+    border-radius: 5px;
+    border: 1px solid grey;
+    text-align: center;
+}
+
+.button-form {
+    margin-left: 5px;
+    padding: 0.70em 2.75vw;
+    border-radius: 5px;
+    border: 1px solid grey;
+    font-size: 12px;
+}
+
+.input-calendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.input-category {
+    border-radius: 5px;
+    padding: 7.5px 5px;
+    width: 25%;
+}
+
+.input-date {
+    padding: 7.5px 5px;
+    width: 20%;
+    border-radius: 5px;
+    border: 1px solid grey;
+    margin-left: 5px;
+}
+
+.input-time {
+    padding: 6px 5px;
+    width: 20%;
+    border-radius: 5px;
+    border: 1px solid grey;
+    margin-left: 5px;
+}
+
+
+
+.box-search-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.search-input {
+    height: 2.5em;
+    width: 35%;
+    border-radius: 5px;
+    border: 1px solid grey;
+    text-align: center;
+}
+
+.input-buttons button {
+    border: none;
+    border-radius: 5px;
+    height: 2.5em;
+    width: 6em;
+    margin-left: 5px;
+}
+
+.main button:hover {
+    background-color: #b4b4b9;
 }
