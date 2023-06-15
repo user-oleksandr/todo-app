@@ -9,10 +9,10 @@ const Modal = ({isOpen, onClose, selectedTodo}) => {
     return (
         <div className="modal">
             <div className="modal-content">
-        <span className="close" onClick={onClose}>
-          &times;
-        </span>
-                <h3>Deadline Details</h3>
+                <span className="close" onClick={onClose}>
+                ×
+                </span>
+                <h4>Deadline Details</h4>
                 {selectedTodo && (
                     <div>
                         <p>
@@ -32,6 +32,18 @@ const Modal = ({isOpen, onClose, selectedTodo}) => {
                             <p>
                                 <strong>category:</strong> {selectedTodo.category}
                             </p>
+                        )}
+                        {selectedTodo.attachments && (
+                            <div>
+                                <strong>file:</strong>
+                                {selectedTodo.attachments.map((attachment, index) => (
+                                    <p key={index}>
+                                        <a href={attachment.url} target="_blank" rel="noopener noreferrer">
+                                            {attachment.name}
+                                        </a>
+                                    </p>
+                                ))}
+                            </div>
                         )}
                     </div>
                 )}

@@ -22,7 +22,7 @@ const LoginForm = ({onLogin}) => {
 
     return (
         <div className="login-container">
-            <h2>Login</h2>
+            <h3>Login</h3>
             <div className='box-login '>
                 <form onSubmit={handleLogin}>
                     <input className='userlogin'

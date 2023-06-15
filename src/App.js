@@ -17,9 +17,9 @@ function App() {
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedTodo, setSelectedTodo] = useState(null);
     const [currentUser, setCurrentUser] = useState(null);
+    const [fileList, setFileList] = useState([]);
 
-
-    // завантаження даних користувача / зберегання стану користувача між оновленнями сторінки
+    // Load user data / restore user state between page refreshes
     useEffect(() => {
         const savedUser = localStorage.getItem("currentUser");
         if (savedUser) {
@@ -27,7 +27,7 @@ function App() {
         }
     }, []);
 
-    // відновлення збереженних данних про задачі
+    // Restore saved todo data
     useEffect(() => {
         if (currentUser) {
             const savedTodo = localStorage.getItem(`todo_${currentUser}`);
@@ -37,8 +37,7 @@ function App() {
         }
     }, [currentUser]);
 
-    // зберігати та відновлювати дані про задачі для кожного користувача
-    // після перезавантаження сторінки або закриття браузера.
+    // Save and restore todo data for each user
     useEffect(() => {
         if (currentUser) {
             localStorage.setItem(`todo_${currentUser}`, JSON.stringify(todo));
@@ -64,11 +63,13 @@ function App() {
                 date: date,
                 time: time,
                 category: category,
+                attachments: fileList,
             },
         ]);
         event.target.todo.value = "";
         clearDateTimeFields();
         setCategory("");
+        setFileList([]);
     };
 
     const deleteTodo = (index) => {
@@ -131,10 +132,17 @@ function App() {
         localStorage.removeItem("currentUser");
     };
 
+    const handleFileChange = (event) => {
+        const files = Array.from(event.target.files);
+        const fileArray = files.map((file) => ({
+            name: file.name,
+            url: URL.createObjectURL(file),
+        }));
+        setFileList(fileArray);
+    };
+
     if (!currentUser) {
-        if (!currentUser) {
-            return <LoginForm onLogin={handleLogin}/>;
-        }
+        return <LoginForm onLogin={handleLogin}/>;
     }
 
     return (
@@ -145,73 +153,89 @@ function App() {
                     <div className="box-logout">
                         <p className="greeting">user: {currentUser}</p>
                         <p className="greeting-button">
-                            <button onClick={handleLogout}>Logout</button>
+                            <button className='button-logout' onClick={handleLogout}>Logout</button>
                         </p>
                     </div>
-                    <form onSubmit={addTodo}>
-                        <input
-                            className="input-form"
-                            type="text"
-                            name="todo"
-                            placeholder="enter your deadline"
-                        />
-                        <button className="button-form" type="submit">
-                            Add
-                        </button>
-                    </form>
-                    <div className="input-calendar">
-                        <select
-                            className="input-category"
-                            name="category"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                        >
-                            <option value="">Category</option>
-                            <option value="personal">Personal</option>
-                            <option value="work">Work</option>
-                            <option value="study">Study</option>
-                        </select>
-                        <input
-                            className="input-date"
-                            type="date"
-                            name="date"
-                            value={date}
-                            onChange={(e) => setDate(e.target.value)}
-                        />
-                        <input
-                            className="input-time"
-                            type="time"
-                            name="time"
-                            value={time}
-                            onChange={(e) => setTime(e.target.value)}
-                        />
+                    <div className='box-input-left'>
+                        <form onSubmit={addTodo}>
+                            <input
+                                className="input-form"
+                                type="text"
+                                name="todo"
+                                placeholder="enter your deadline"
+                            />
+                            <label className="file-input-label">
+                                <span className="file-input-button">select files</span>
+                                <input
+                                    type="file"
+                                    name="file"
+                                    multiple
+                                    onChange={handleFileChange}
+                                    style={{display: "none"}}
+                                />
+                            </label>
+                            <button className="button-form" type="submit">
+                                Add
+                            </button>
+                        </form>
+                    </div>
+                    <div className='box-input-right'>
+                        <div className='box-input-file'>
+
+                        </div>
+                        <div className="input-calendar">
+                            <select
+                                className="input-category"
+                                name="category"
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                            >
+                                <option value="">Category</option>
+                                <option value="personal">Personal</option>
+                                <option value="work">Work</option>
+                                <option value="study">Study</option>
+                            </select>
+                            <input
+                                className="input-date"
+                                type="date"
+                                name="date"
+                                value={date}
+                                onChange={(e) => setDate(e.target.value)}
+                            />
+                            <input
+                                className="input-time"
+                                type="time"
+                                name="time"
+                                value={time}
+                                onChange={(e) => setTime(e.target.value)}
+                            />
+                        </div>
                     </div>
                 </div>
-                        <TodoList
-                            todo={todo}
-                            filter={filter}
-                            setFilter={setFilter}
-                            editIndex={editIndex}
-                            setEditIndex={setEditIndex}
-                            editText={editText}
-                            setEditText={setEditText}
-                            date={date}
-                            setDate={setDate}
-                            time={time}
-                            setTime={setTime}
-                            category={category}
-                            setCategory={setCategory}
-                            searchValue={searchValue}
-                            deleteTodo={deleteTodo}
-                            toggleTodo={toggleTodo}
-                            editTodo={editTodo}
-                            saveTodo={saveTodo}
-                            searchTodo={searchTodo}
-                            openModal={openModal}
-                        />
+                <TodoList
+                    todo={todo}
+                    filter={filter}
+                    setFilter={setFilter}
+                    editIndex={editIndex}
+                    setEditIndex={setEditIndex}
+                    editText={editText}
+                    setEditText={setEditText}
+                    date={date}
+                    setDate={setDate}
+                    time={time}
+                    setTime={setTime}
+                    category={category}
+                    setCategory={setCategory}
+                    searchValue={searchValue}
+                    deleteTodo={deleteTodo}
+                    toggleTodo={toggleTodo}
+                    editTodo={editTodo}
+                    saveTodo={saveTodo}
+                    searchTodo={searchTodo}
+                    openModal={openModal}
+                />
             </div>
-
-            <Modal isOpen={modalOpen} onClose={closeModal} selectedTodo={selectedTodo} />
+            <Modal isOpen={modalOpen} onClose={closeModal} selectedTodo={selectedTodo}/>
         </div>
     );
 }
