@@ -1,110 +1,43 @@
-@media (min-width: 768px) {
-    .login-container {
-        border: 1px solid grey;
-        border-radius: 0.5em;
-        height: 23em;
-        margin-top: 25px;
-    }
+.login-container {
+    margin-top: 50px;
+}
 
-    h3 {
-        font-family: "Agency FB";
-        text-align: center;
-        font-size: 2em;
-        border-bottom: 1px solid grey;
-        padding: 55px;
-    }
+h3 {
+    font-size: 35px;
+    font-family: "Agency FB";
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 
-    .box-login {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 5em;
+.col-8 {
+    background-color: rgba(180, 180, 185, 0.39);
+    padding: 25px;
+    border-radius: 10px;
+}
 
-    }
+.btn {
+    margin-top: 10px;
+    width: auto;
+    background-color: #B4B4B9;
+    border: none;
+}
 
-    .userlogin {
-        height: 2.5em;
-        width: 15vw;
-        border-radius: 5px;
-        border: 1px solid grey;
-        text-align: center;
-    }
+.btn:hover {
+    background-color: #959598;
+}
 
-    .userpassword {
-        height: 2.5em;
-        width: 15vw;
-        margin-left: 5px;
-        border-radius: 5px;
-        border: 1px solid grey;
-        text-align: center;
-    }
+.text {
+    margin-top: 25px;
+    font-size: 14px;
+}
 
-    .userbutton {
-        margin-left: 5px;
-        padding: 0.8em 2.5vw;
-        border-radius: 5px;
-        border: none;
-        background-color: rgba(204, 204, 204, 0.63);
-    }
-
-    .userbutton:hover {
-        background-color: #b4b4b9;
-    }
+.toggle-link {
+    color: blue;
+    text-decoration: underline;
 }
 
 
-@media (max-width: 768px) {
-    .login-container {
-        border: 1px solid grey;
-        border-radius: 10px;
-        height: 21em;
-        margin-top: 25px;
-    }
-
-    h3 {
-        font-family: "Agency FB";
-        text-align: center;
-        font-size: 1.5em;
-        border-bottom: 1px solid grey;
-        padding: 55px;
-    }
-
-    .box-login {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 5em;
-    }
-
-    .userlogin {
-        height: 2.5em;
-        width: 15vw;
-        font-size: 0.75em;
-        border-radius: 5px;
-        border: 1px solid grey;
-        text-align: center;
-    }
-
-    .userpassword {
-        height: 2.5em;
-        width: 15vw;
-        font-size: 0.75em;
-        margin-left: 5px;
-        border-radius: 5px;
-        border: 1px solid grey;
-        text-align: center;
-    }
-
-    .userbutton {
-        margin-left: 5px;
-        padding: 0.8em 2.5vw;
-        border-radius: 5px;
-        border: none;
-        font-size: 0.75em;
-        background-color: rgba(204, 204, 204, 0.63);
-    }
-
-    .userbutton:hover {
-        background-color: #b4b4b9;
-    }
+.toggle-link:hover {
+    color: orangered;
+    cursor: pointer;
 }

@@ -2,9 +2,10 @@
     .modal {
         position: fixed;
         z-index: 9999;
-        left: 25%;
+        left: 35%;
         top: 25%;
         width: 35%;
+        height: min-content;
         background-color: rgba(0, 0, 0, 0.5);
         display: flex;
         justify-content: center;

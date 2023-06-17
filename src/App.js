@@ -1,9 +1,9 @@
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import React, {useState, useEffect} from "react";
-import LoginForm from './components/login/LoginForm';
+import LoginForm from "./components/login/LoginForm";
 import Modal from "./components/modal/modal";
-import TodoList from './components/TodoList/TodoList';
-
+import TodoList from "./components/TodoList/TodoList";
 
 function App() {
     const [todo, setTodo] = useState([]);
@@ -132,6 +132,17 @@ function App() {
         localStorage.removeItem("currentUser");
     };
 
+    const handleRegister = (username, password) => {
+        if (localStorage.getItem(username)) {
+            alert(
+                "Username already exists. Please choose a different username."
+            );
+        } else {
+            localStorage.setItem(username, password);
+            handleLogin(username);
+        }
+    };
+
     const handleFileChange = (event) => {
         const files = Array.from(event.target.files);
         const fileArray = files.map((file) => ({
@@ -142,7 +153,7 @@ function App() {
     };
 
     if (!currentUser) {
-        return <LoginForm onLogin={handleLogin}/>;
+        return <LoginForm onLogin={handleLogin} onRegister={handleRegister}/>;
     }
 
     return (

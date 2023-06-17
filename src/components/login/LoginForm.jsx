@@ -1,46 +1,84 @@
 import React, {useState} from "react";
-import './LoginForm.css';
-import UserCredentials from '../userCredentials/UserCredentials';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./LoginForm.css";
 
-const LoginForm = ({onLogin}) => {
+const LoginForm = ({onLogin, onRegister}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const userCredentials = UserCredentials();
+    const [isRegistering, setIsRegistering] = useState(false);
 
     const handleLogin = (event) => {
         event.preventDefault();
-        const user = userCredentials.find(
-            (cred) => cred.username === username && cred.password === password
-        );
-        if (user) {
-            onLogin(user.username);
-            localStorage.setItem("currentUser", user.username);
-        } else {
-            alert("Invalid username or password");
+        if (username.trim() === "" || password.trim() === "") {
+            alert("Please enter your username and password");
+            return;
         }
+        onLogin(username);
+    };
+
+    const handleRegister = (event) => {
+        event.preventDefault();
+        if (username.trim() === "" || password.trim() === "") {
+            alert("Please enter a username and password to register");
+            return;
+        }
+        onRegister(username, password);
     };
 
     return (
         <div className="login-container">
-            <h3>Login</h3>
-            <div className='box-login '>
-                <form onSubmit={handleLogin}>
-                    <input className='userlogin'
-                           type="text"
-                           placeholder="Enter your username"
-                           value={username}
-                           onChange={(e) => setUsername(e.target.value)}
-                           required
-                    />
-                    <input className='userpassword'
-                           type="password"
-                           placeholder="Enter your password"
-                           value={password}
-                           onChange={(e) => setPassword(e.target.value)}
-                           required
-                    />
-                    <button className='userbutton' type="submit">Login</button>
-                </form>
+            <div className="row justify-content-center text-center">
+                <div className='col-8'>
+                    <h3 className='text-center'>{isRegistering ? "Register" : "Login"}</h3>
+                    <div className="box-login">
+                        <form>
+                            <div className="mb-3">
+                                <input
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="Enter your username"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <input
+                                    className="form-control"
+                                    type="password"
+                                    placeholder="Enter your password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            {isRegistering ? (
+                                <button className="btn btn-primary" type="submit" onClick={handleRegister}>
+                                    Register
+                                </button>
+                            ) : (
+                                <button className="btn btn-primary" type="submit" onClick={handleLogin}>
+                                    Login
+                                </button>
+                            )}
+                            {!isRegistering ? (
+                                <p className="text">
+                                    Don't have an account?{" "}
+                                    <span className="toggle-link" onClick={() => setIsRegistering(true)}>
+                Register here.
+              </span>
+                                </p>
+                            ) : (
+                                <p className="text">
+                                    Already have an account?{" "}
+                                    <span className="toggle-link" onClick={() => setIsRegistering(false)}>
+                Login here.
+              </span>
+                                </p>
+                            )}
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     );

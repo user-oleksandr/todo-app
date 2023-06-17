@@ -1,5 +1,5 @@
 import './TodoList.css';
-
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const TodoList = ({
                       todo,
