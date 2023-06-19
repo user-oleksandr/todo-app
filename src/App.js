@@ -158,71 +158,70 @@ function App() {
 
     return (
         <div className="App">
-            <h2>Deadline planner</h2>
-            <div className="main">
-                <div className="box-input">
-                    <div className="box-logout">
-                        <p className="greeting">user: {currentUser}</p>
-                        <p className="greeting-button">
-                            <button className='button-logout' onClick={handleLogout}>Logout</button>
-                        </p>
-                    </div>
-                    <div className='box-input-left'>
-                        <form onSubmit={addTodo}>
-                            <input
-                                className="input-form"
-                                type="text"
-                                name="todo"
-                                placeholder="enter your deadline"
-                            />
-                            <label className="file-input-label">
-                                <span className="file-input-button">select files</span>
-                                <input
-                                    type="file"
-                                    name="file"
-                                    multiple
-                                    onChange={handleFileChange}
-                                    style={{display: "none"}}
-                                />
-                            </label>
-                            <button className="button-form" type="submit">
-                                Add
-                            </button>
-                        </form>
-                    </div>
-                    <div className='box-input-right'>
-                        <div className='box-input-file'>
-
-                        </div>
-                        <div className="input-calendar">
-                            <select
-                                className="input-category"
-                                name="category"
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
-                            >
-                                <option value="">Category</option>
-                                <option value="personal">Personal</option>
-                                <option value="work">Work</option>
-                                <option value="study">Study</option>
-                            </select>
-                            <input
-                                className="input-date"
-                                type="date"
-                                name="date"
-                                value={date}
-                                onChange={(e) => setDate(e.target.value)}
-                            />
-                            <input
-                                className="input-time"
-                                type="time"
-                                name="time"
-                                value={time}
-                                onChange={(e) => setTime(e.target.value)}
-                            />
+            <div className='container mt-5 rounded' style={{minHeight: "600px"}}>
+                <div className='row text-center'>
+                    <h2 className='col mt-5'>Deadline planner</h2>
+                </div>
+                <hr/>
+                <div className="container">
+                    <div className='col'>
+                        user: {currentUser}
+                        <div className='col'>
+                            <button className='btn btn-secondary btn-sm' onClick={handleLogout}>Logout</button>
                         </div>
                     </div>
                 </div>
+                <div className='row mt-5 text-center'>
+                    <form onSubmit={addTodo}>
+                        <div className='row justify-content-center'>
+                            <div className='col-7 justify-content-center text-center'>
+                                <input className="form-control text-center" type="text" name="todo"
+                                       placeholder="enter your deadline"/>
+                            </div>
+                        </div>
+                        <div className='row justify-content-center mt-4'>
+                            <div className='col-5'>
+                                <select className="form-select text-center" name="category" value={category}
+                                        onChange={(e) => setCategory(e.target.value)}>
+                                    <option value="">Category</option>
+                                    <option value="personal">Personal</option>
+                                    <option value="work">Work</option>
+                                    <option value="study">Study</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className='row justify-content-center mt-1'>
+                            <div className='col-5'>
+                                <input className="form-control text-center" type="date" name="date" value={date}
+                                       onChange={(e) => setDate(e.target.value)}/>
+                            </div>
+                        </div>
+                        <div className='row justify-content-center mt-1'>
+                            <div className='col-5'>
+                                <input className="form-control text-center" type="time" name="time" value={time}
+                                       onChange={(e) => setTime(e.target.value)}/>
+                            </div>
+                        </div>
+                        <div className='row justify-content-center mt-1'>
+                            <div className='col'>
+                                <label className='btn btn-secondary btn-sm'>
+                                    <span className="file-input-button">select files</span>
+                                    <input
+                                        type="file"
+                                        name="file"
+                                        multiple
+                                        onChange={handleFileChange}
+                                        style={{display: "none"}}
+                                    />
+                                </label>
+                                <button className="btn btn-secondary ms-1 btn-sm" type="submit">
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <hr/>
                 <TodoList
                     todo={todo}
                     filter={filter}

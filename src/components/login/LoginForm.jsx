@@ -26,7 +26,7 @@ const LoginForm = ({onLogin, onRegister}) => {
     };
 
     return (
-        <div className="login-container">
+        <div className="container-fluid">
             <div className="row justify-content-center text-center">
                 <div className='col-8'>
                     <h3 className='text-center'>{isRegistering ? "Register" : "Login"}</h3>
@@ -53,11 +53,11 @@ const LoginForm = ({onLogin, onRegister}) => {
                                 />
                             </div>
                             {isRegistering ? (
-                                <button className="btn btn-primary" type="submit" onClick={handleRegister}>
+                                <button className='btn btn-secondary btn-sm' onClick={handleRegister}>
                                     Register
                                 </button>
                             ) : (
-                                <button className="btn btn-primary" type="submit" onClick={handleLogin}>
+                                <button className='btn btn-secondary btn-sm' onClick={handleLogin}>
                                     Login
                                 </button>
                             )}

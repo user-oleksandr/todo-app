@@ -50,97 +50,82 @@ const TodoList = ({
     };
 
     return (
-        <div className="box-contant">
-            <div className="box-search-input">
-                <input
-                    type="text"
-                    name="search"
-                    placeholder="Search"
-                    onChange={searchTodo}
-                    className="search-input"
-                />
-                <div className="input-buttons">
-                    <button onClick={() => setFilter("all")}>All</button>
-                    <button onClick={() => setFilter("active")}>Active</button>
-                    <button onClick={() => setFilter("completed")}>Completed</button>
+        <div className="container">
+            <div className="row mt-5 text-center justify-content-center">
+                <div className='col-7'>
+                    <input className='form-control' type="text" name="search" placeholder="Search" onChange={searchTodo}/>
                 </div>
             </div>
-
-            <ul>
+            <div className='row text-center mt-1'>
+                <div className='col'>
+                    <button className='btn btn-secondary btn-sm' onClick={() => setFilter("all")}>All</button>
+                    <button className=' btn btn-secondary ms-1 btn-sm' onClick={() => setFilter("active")}>Active
+                    </button>
+                    <button className='btn btn-secondary ms-1 btn-sm' onClick={() => setFilter("completed")}>Completed
+                    </button>
+                </div>
+            </div>
+            <ul className='mt-5' style={{listStyleType: "none", paddingBottom: '50px'}}>
                 {filteredTodo().map((todoItem, index) => (
                     <li
                         key={index}
-                        className="todo-item"
                         style={{
                             textDecoration: todoItem.completed ? "line-through" : "none",
                             color:
                                 todoItem.category === "personal" ? "red" : todoItem.category === "work"
-                                    ? "green" : todoItem.category === "study" ? "blue" : "inherit",
+                                    ? "green" : todoItem.category === "study" ? "blue" : "inherit"
                         }}
                     >
                         {editIndex === index ? (
-                            <form
-                                className="todo-item-form"
-                                onSubmit={(event) => {
+                            <div className='row mb-1 d-flex'
+                                 style={{border: '1px solid black', borderRadius: '5px', marginLeft: '-45px'}}>
+                                <form onSubmit={(event) => {
                                     event.preventDefault();
                                     saveTodo(index);
-                                }}
-                            >
-                                <input
-                                    className="text"
-                                    type="text"
-                                    value={editText}
-                                    onChange={(event) => setEditText(event.target.value)}
-                                />
-                                <div className="contant-input-calendar">
-                                    <input
-                                        className="contant-input-date"
-                                        type="date"
-                                        name="date"
-                                        value={date}
-                                        onChange={(e) => setDate(e.target.value)}
-                                    />
-                                    <input
-                                        className="contant-input-time"
-                                        type="time"
-                                        name="time"
-                                        value={time}
-                                        onChange={(e) => setTime(e.target.value)}
-                                    />
-                                </div>
-                                <select
-                                    className="contant-input-category"
-                                    name="category"
-                                    value={category}
-                                    onChange={(e) => setCategory(e.target.value)}
-                                >
-                                    <option value="">No category</option>
-                                    <option value="work">Work</option>
-                                    <option value="study">Study</option>
-                                    <option value="personal">Personal</option>
-                                </select>
-                                <div className="input-actions">
-                                    <button type="submit">Save</button>
-                                    <button onClick={() => setEditIndex(-1)}>Cancel</button>
-                                </div>
-                            </form>
+                                }}>
+                                    <div className='row'>
+                                        <div className='col-6 mt-2'>
+                                            <input className="col-4" type="text" value={editText} onChange={(event) => setEditText(event.target.value)}/>
+                                            <input className='col mt-1' type="date" name="date" value={date} onChange={(e) => setDate(e.target.value)}/>
+                                            <input className='col mt-1' type="time" name="time" value={time} onChange={(e) => setTime(e.target.value)}/>
+                                            <select name="category" value={category} onChange={(e) => setCategory(e.target.value)}>
+                                                <option value="">No category</option>
+                                                <option value="work">Work</option>
+                                                <option value="study">Study</option>
+                                                <option value="personal">Personal</option>
+                                            </select>
+                                        </div>
+                                        <div className='col-6 mb-2 text-end'>
+                                            <button className='btn btn-secondary btn-sm' type="submit" style={{border: "none"}}>Save</button>
+                                            <button className='btn btn-secondary btn-sm ms-1 ' style={{border: "none"}} onClick={() => setEditIndex(-1)}>Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         ) : (
-                            <div className="value">
-                                {todoItem.text}
-                                {todoItem.category && <span>({todoItem.category})</span>}
+                            <div className="row rounded mb-1"
+                                 style={{height: 'auto', backgroundColor: 'whitesmoke', marginLeft: '-45px'}}>
+                                <div className='col d-flex mt-2'>
+                                    {todoItem.text}{' '}
+                                    {todoItem.category && <span>({todoItem.category})</span>}
+                                </div>
+                                <div className='col mb-1 text-end'>
+                                    <button className="btn btn-secondary btn-sm"
+                                            onClick={() => toggleTodo(index)}>
+                                        {todoItem.completed ? "incomplete" : "complete"}
+                                    </button>
+                                    <button className="btn btn-secondary btn-sm ms-1"
+                                            onClick={() => editTodo(index)}>Edit
+                                    </button>
+                                    <button className="btn btn-secondary btn-sm ms-1"
+                                            onClick={() => openModal(todoItem)}>Details
+                                    </button>
+                                    <button className='btn btn-secondary btn-sm ms-1'
+                                            onClick={() => deleteTodo(index)}>Delete
+                                    </button>
+                                </div>
                             </div>
                         )}
-                        <div className="actions">
-                            <button className="button-details" onClick={() => openModal(todoItem)}
-                            >
-                                Details
-                            </button>
-                            <button onClick={() => editTodo(index)}>Edit</button>
-                            <button onClick={() => toggleTodo(index)}>
-                                {todoItem.completed ? "Mark as incomplete" : "Mark as complete"}
-                            </button>
-                            <button onClick={() => deleteTodo(index)}>Delete</button>
-                        </div>
                     </li>
                 ))}
             </ul>
