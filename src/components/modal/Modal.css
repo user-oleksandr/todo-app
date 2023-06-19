@@ -5,7 +5,7 @@
         left: 35%;
         top: 25%;
         width: 35%;
-        height: min-content;
+        height: auto;
         background-color: rgba(0, 0, 0, 0.5);
         display: flex;
         justify-content: center;
@@ -61,12 +61,12 @@
         left: 25%;
         top: 25%;
         width: 45%;
+        height: auto;
         background-color: rgba(0, 0, 0, 0.5);
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 10px;
-        font-size: 0.8em;
     }
 
     .modal-content {

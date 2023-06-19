@@ -53,7 +53,8 @@ const TodoList = ({
         <div className="container">
             <div className="row mt-5 text-center justify-content-center">
                 <div className='col-7'>
-                    <input className='form-control' type="text" name="search" placeholder="Search" onChange={searchTodo}/>
+                    <input className='form-control' type="text" name="search" placeholder="Search"
+                           onChange={searchTodo}/>
                 </div>
             </div>
             <div className='row text-center mt-1'>
@@ -78,17 +79,22 @@ const TodoList = ({
                     >
                         {editIndex === index ? (
                             <div className='row mb-1 d-flex'
-                                 style={{border: '1px solid black', borderRadius: '5px', marginLeft: '-45px'}}>
+                                 style={{backgroundColor: 'wheat', borderRadius: '5px', marginLeft: '-45px'}}>
                                 <form onSubmit={(event) => {
                                     event.preventDefault();
                                     saveTodo(index);
                                 }}>
                                     <div className='row'>
-                                        <div className='col-6 mt-2'>
-                                            <input className="col-4" type="text" value={editText} onChange={(event) => setEditText(event.target.value)}/>
-                                            <input className='col mt-1' type="date" name="date" value={date} onChange={(e) => setDate(e.target.value)}/>
-                                            <input className='col mt-1' type="time" name="time" value={time} onChange={(e) => setTime(e.target.value)}/>
-                                            <select name="category" value={category} onChange={(e) => setCategory(e.target.value)}>
+                                        <div className='col-6 mt-2 mb-2'>
+                                            <input className="col-4 me-1" type="text" value={editText}
+                                                   onChange={(event) => setEditText(event.target.value)}/>
+                                            <input className='col me-1' type="date" name="date" value={date}
+                                                   onChange={(e) => setDate(e.target.value)}/>
+                                            <input className='col me-1' type="time" name="time" value={time}
+                                                   onChange={(e) => setTime(e.target.value)}/>
+                                            <select className='me-1' name="category" value={category}
+                                                    onChange={(e) => setCategory(e.target.value)}
+                                                    style={{height: '1.75em'}}>
                                                 <option value="">No category</option>
                                                 <option value="work">Work</option>
                                                 <option value="study">Study</option>
@@ -96,8 +102,12 @@ const TodoList = ({
                                             </select>
                                         </div>
                                         <div className='col-6 mb-2 text-end'>
-                                            <button className='btn btn-secondary btn-sm' type="submit" style={{border: "none"}}>Save</button>
-                                            <button className='btn btn-secondary btn-sm ms-1 ' style={{border: "none"}} onClick={() => setEditIndex(-1)}>Cancel</button>
+                                            <button className='btn btn-secondary btn-sm' type="submit"
+                                                    style={{border: "none"}}>Save
+                                            </button>
+                                            <button className='btn btn-secondary btn-sm ms-1 ' style={{border: "none"}}
+                                                    onClick={() => setEditIndex(-1)}>Cancel
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
