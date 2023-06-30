@@ -180,7 +180,7 @@ function App() {
                             </div>
                         </div>
                         <div className='row justify-content-center mt-4'>
-                            <div className='col-5'>
+                            <div className='col-7'>
                                 <select className="form-select text-center" name="category" value={category}
                                         onChange={(e) => setCategory(e.target.value)}>
                                     <option value="">Category</option>
@@ -191,13 +191,13 @@ function App() {
                             </div>
                         </div>
                         <div className='row justify-content-center mt-1'>
-                            <div className='col-5'>
+                            <div className='col-7'>
                                 <input className="form-control text-center" type="date" name="date" value={date}
                                        onChange={(e) => setDate(e.target.value)}/>
                             </div>
                         </div>
                         <div className='row justify-content-center mt-1'>
-                            <div className='col-5'>
+                            <div className='col-7'>
                                 <input className="form-control text-center" type="time" name="time" value={time}
                                        onChange={(e) => setTime(e.target.value)}/>
                             </div>
